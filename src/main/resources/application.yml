@@ -1,3 +1,22 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: spring-aop
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/education
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      schema: mts
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS "mts";
+  jpa:
+    hibernate:
+      ddl-auto: create
+  liquibase:
+    enabled: false
