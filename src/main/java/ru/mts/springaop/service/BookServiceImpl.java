@@ -2,6 +2,8 @@ package ru.mts.springaop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.mts.springaop.annotations.Logging;
+import ru.mts.springaop.annotations.TimeMetric;
 import ru.mts.springaop.entity.Book;
 import ru.mts.springaop.exceptions.ResourceNotFoundException;
 import ru.mts.springaop.repository.BookRepository;
@@ -15,11 +17,14 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
+    @Logging
     public List<Book> getBooks() {
         return bookRepository.findAll();
     }
 
     @Override
+    @TimeMetric
+    @Logging(name = "Создание книги")
     public Book createBook(Book book) {
         if (existBook(book)) {
             throw new IllegalArgumentException();
