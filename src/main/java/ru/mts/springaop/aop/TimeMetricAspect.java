@@ -4,8 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -22,7 +20,7 @@ public class TimeMetricAspect {
 
         long end = System.currentTimeMillis();
 
-        log.info("{} Исполнено за {} ms", joinPoint.getSignature(), start-end);
+        log.info("{} Исполнено за {} ms", joinPoint.getSignature(), end - start);
 
         return result;
     }

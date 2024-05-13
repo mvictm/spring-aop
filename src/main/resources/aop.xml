@@ -1,0 +1,8 @@
+<aspectj>
+    <aspects>
+        <aspect name="ru.mts.springaop.aop.LogAspect"/>
+        <aspect name="ru.mts.springaop.aop.ErrorAspect"/>
+        <aspect name="ru.mts.springaop.aop.ControllerAspect"/>
+        <aspect name="ru.mts.springaop.aop.TimeMetricAspect"/>
+    </aspects>
+</aspectj>

@@ -54,12 +54,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Logging(name = "Поиск книги")
     public boolean existBook(Book book) {
-        if (book == null || StringUtils.isAnyBlank(book.getName(), book.getAuthor(), book.getPublication())) {
-            throw new IllegalArgumentException();
-        }
+        checkBook(book);
+
         return bookRepository.existsByName(book.getName())
                 && bookRepository.existsByAuthor(book.getAuthor())
                 && bookRepository.existsByPublication(book.getPublication());
+    }
+
+    @Logging(name = "Проверка книги")
+    private void checkBook(Book book) {
+        if (book == null || StringUtils.isAnyBlank(book.getName(), book.getAuthor(), book.getPublication())) {
+            throw new IllegalArgumentException();
+        }
     }
 }
