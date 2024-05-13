@@ -53,4 +53,15 @@ class SpringAopApplicationTests {
                 .getResponseBody();
     }
 
+    @Test
+    void error() {
+        client.post()
+                .uri("/api/books/create")
+                .bodyValue(new Book())
+                .exchange()
+                .expectBody(Book.class)
+                .returnResult()
+                .getResponseBody();
+    }
+
 }

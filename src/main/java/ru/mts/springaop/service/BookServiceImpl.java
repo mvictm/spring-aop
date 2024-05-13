@@ -1,6 +1,7 @@
 package ru.mts.springaop.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ru.mts.springaop.annotations.Logging;
 import ru.mts.springaop.annotations.TimeMetric;
@@ -54,7 +55,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean existBook(Book book) {
-        if (book == null) {
+        if (book == null || StringUtils.isAnyBlank(book.getName(), book.getAuthor(), book.getPublication())) {
             throw new IllegalArgumentException();
         }
         return bookRepository.existsByName(book.getName())
